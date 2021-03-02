@@ -2,6 +2,7 @@ package services
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 	"net/url"
 	"strings"
@@ -33,6 +34,7 @@ func NewMessageService(c HttpClient) MessageService {
 }
 
 func (*messageService) SendSMS(toPhoneNumber, message string) (string, error) {
+	log.Println("In the service", message)
 	accountSid := config.Config("ACCOUNT_SID")
 	authToken := config.Config("AUTH_TOKEN")
 	fromPhoneNumber := config.Config("FROM_PHONE_NUMBER")

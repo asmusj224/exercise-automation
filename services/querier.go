@@ -27,6 +27,7 @@ type Querier interface {
 	GetExercises(ctx context.Context) ([]Exercise, error)
 	GetMuscleById(ctx context.Context, id uuid.UUID) (Muscle, error)
 	GetMuscles(ctx context.Context) ([]Muscle, error)
+	GetRandomExerciseWorkout(ctx context.Context) (GetRandomExerciseWorkoutRow, error)
 	GetWorkout(ctx context.Context) ([]Workout, error)
 	GetWorkoutById(ctx context.Context, id uuid.UUID) (Workout, error)
 	UpdateEquipmentById(ctx context.Context, arg UpdateEquipmentByIdParams) (Equipment, error)

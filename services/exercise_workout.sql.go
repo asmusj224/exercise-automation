@@ -84,6 +84,36 @@ func (q *Queries) GetExerciseWorkoutByWorkoutId(ctx context.Context, id uuid.UUI
 	return i, err
 }
 
+const getRandomExerciseWorkout = `-- name: GetRandomExerciseWorkout :one
+SELECT w.id, w.name, w.split , t.exercises
+FROM   workout      w
+JOIN  ( 
+   SELECT ew.workout_id AS id, array_to_json(array_agg(e.*)) AS exercises
+   FROM   exercise_workout ew
+   JOIN   exercise       e  ON e.id = ew.exercise_id
+   GROUP  BY ew.workout_id
+   ) t USING (id) order by random() LIMIT 1
+`
+
+type GetRandomExerciseWorkoutRow struct {
+	ID        uuid.UUID       `json:"id"`
+	Name      string          `json:"name"`
+	Split     WorkoutSplit    `json:"split"`
+	Exercises json.RawMessage `json:"exercises"`
+}
+
+func (q *Queries) GetRandomExerciseWorkout(ctx context.Context) (GetRandomExerciseWorkoutRow, error) {
+	row := q.db.QueryRowContext(ctx, getRandomExerciseWorkout)
+	var i GetRandomExerciseWorkoutRow
+	err := row.Scan(
+		&i.ID,
+		&i.Name,
+		&i.Split,
+		&i.Exercises,
+	)
+	return i, err
+}
+
 const updateExerciseWorkoutById = `-- name: UpdateExerciseWorkoutById :one
 UPDATE exercise_workout SET exercise_id = $1, workout_id = $2 WHERE id = $3 RETURNING id, created_at, updated_at, exercise_id, workout_id
 `

@@ -1,13 +1,14 @@
 package main
 
 import (
+	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/asmusj224/exercise-automation/controller"
 	"github.com/asmusj224/exercise-automation/database"
 	"github.com/asmusj224/exercise-automation/services"
 	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
 )
 
 func main() {
@@ -20,6 +21,7 @@ func main() {
 	}
 
 	store := services.NewStore(database.DB)
+	messageService := services.NewMessageService(&http.Client{})
 	workoutController := controller.NewWorkoutController(store)
 	app.POST("/api/v1/workout", workoutController.CreateWorkout)
 	app.GET("/api/v1/workout/:id", workoutController.GetWorkoutByID)
@@ -60,10 +62,24 @@ func main() {
 	app.PUT("/api/v1/exercise-workout/:id", exerciseWorkout.UpdateExerciseWorkoutByID)
 
 	app.GET("/test", func(c *gin.Context) {
-		id, _ := uuid.Parse("cf89c692-050d-448c-ae57-4ba3bb4ee518")
-		found, _ := store.GetExerciseWorkoutByWorkoutId(c, id)
+		found, _ := store.GetRandomExerciseWorkout(c)
+		var m []services.Exercise
+		json.Unmarshal(found.Exercises, &m)
+		str := "______________" + string(found.Name) + "______________" + "\n"
+		sid, err := messageService.SendSMS("+12532034540", str)
+		for _, v := range m {
+			message := v.Name + " " + string(v.NumberOfReps.Int32) + " " + string(v.NumberOfReps.Int32) + "\n"
+			messageService.SendSMS("+12532034540", message)
+		}
+		log.Println(str)
+
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
 		c.JSON(http.StatusOK, gin.H{
 			"result": found,
+			"sid":    sid,
 		})
 	})
 
