@@ -1,0 +1,38 @@
+version: "3.3"
+services:
+  api:
+    build: "."
+    ports:
+      - "3000:3000"
+    restart: "always"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: admin
+      DB_PASSWORD: password
+      DB_NAME: db
+    networks:
+      - app
+    depends_on:
+      - db
+  db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    networks:
+      - app
+    volumes:
+      - postgres-data:/data/db
+
+networks:
+  app:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    driver: local
