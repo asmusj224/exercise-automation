@@ -67,4 +67,69 @@ INSERT INTO "public"."exercise_workout"("workout_id", "exercise_id")
            ('d7911054-5940-4d8e-88ef-2c99d58a38af', 'e926aaa0-7718-483f-acc9-0ae8910dd050'),
            ('d7911054-5940-4d8e-88ef-2c99d58a38af', 'fa4a3461-63c5-4bdc-bfc2-4dd5ac56315a'),
            ('d7911054-5940-4d8e-88ef-2c99d58a38af', '92814ea2-b04a-4479-98dc-b0e81738a2f1');
-           
+
+
+INSERT INTO "public"."exercise"("id", "category", "name", "number_of_reps", "number_of_sets", "repetition_unit", "photo_url", "video_url") 
+    VALUES
+    ('686cfa26-9f79-483a-8578-7f88403af9dc', 'Warm_Up', 'TRX chest stretch', 30, 1, 'seconds', NULL, NULL),
+    ('2d1c6383-dd7f-4b05-b60d-ed33c1495534','Warm_Up', 'TRX lunge and twist', 30, 1, 'seconds', NULL, NULL),
+    ('60654ddf-7c75-41f7-b82d-ec1069081aa3','Strength_Training', 'One legged Romanian deadlift', 10, 3, 'count', NULL, NULL),
+    ('071fd3ab-0a1b-48ab-bf2b-abe5a74305b1','Strength_Training', 'Curl to press to extension', 10, 3, 'count', NULL, NULL),
+    ('cc43eded-9654-4550-b302-ce2d64757460','Strength_Training', 'One arm row', 10, 3, 'count', NULL, NULL),
+    ('ade5f3ec-2857-44cc-9d00-79621e1b8815','Strength_Training', 'Curl ladder', 10, 3, 'count', NULL, NULL),
+    ('bc6caa11-c677-4ca4-8598-0db5674327ce','HIIT', 'Mountain climbers', 40, 3, 'seconds', NULL, NULL),
+    ('94e1b073-2c8b-4c59-86c3-96adb2bbaab6','HIIT', 'Ice Skater Jumps', 60, 3, 'seconds', NULL, NULL),
+    ('37d7b61b-b45a-42d9-bc28-4f9a690503cc','HIIT', 'Jumping Squats', 60, 3, 'seconds', NULL, NULL),
+    ('0ca47502-1bff-4cc1-8599-8a9f994389db','HIIT', 'Russian Twist', 30, 3, 'count', NULL, NULL),
+    ('4d7b2f74-0511-4175-a8fd-2a6c6a03a393','Strength_Training', 'Left to Right push ups', 10, 3, 'count', NULL, NULL),
+    ('9d6ccc72-bc93-4b73-af29-c5557d8a0073','Cool_Down', 'Seated hip stretch', 30, 1, 'seconds', NULL, NULL);
+    
+INSERT INTO "public"."workout"("id", "name", "split") 
+    VALUES('802dcb77-df35-47b5-b5df-029d95f5e664', 'Workout 12/17', 'Full_Body');
+    
+INSERT INTO "public"."exercise_workout"("workout_id", "exercise_id")
+    VALUES ('802dcb77-df35-47b5-b5df-029d95f5e664', '686cfa26-9f79-483a-8578-7f88403af9dc'),
+           ('802dcb77-df35-47b5-b5df-029d95f5e664', '2d1c6383-dd7f-4b05-b60d-ed33c1495534'),
+           ('802dcb77-df35-47b5-b5df-029d95f5e664', '60654ddf-7c75-41f7-b82d-ec1069081aa3'),
+           ('802dcb77-df35-47b5-b5df-029d95f5e664', '071fd3ab-0a1b-48ab-bf2b-abe5a74305b1'),
+           ('802dcb77-df35-47b5-b5df-029d95f5e664', 'cc43eded-9654-4550-b302-ce2d64757460'),
+           ('802dcb77-df35-47b5-b5df-029d95f5e664', 'ade5f3ec-2857-44cc-9d00-79621e1b8815'),
+           ('802dcb77-df35-47b5-b5df-029d95f5e664', 'bc6caa11-c677-4ca4-8598-0db5674327ce'),
+           ('802dcb77-df35-47b5-b5df-029d95f5e664', '94e1b073-2c8b-4c59-86c3-96adb2bbaab6'),
+           ('802dcb77-df35-47b5-b5df-029d95f5e664', '37d7b61b-b45a-42d9-bc28-4f9a690503cc'),
+           ('802dcb77-df35-47b5-b5df-029d95f5e664', '0ca47502-1bff-4cc1-8599-8a9f994389db'),
+           ('802dcb77-df35-47b5-b5df-029d95f5e664', '4d7b2f74-0511-4175-a8fd-2a6c6a03a393'),
+           ('802dcb77-df35-47b5-b5df-029d95f5e664', 'fa4a3461-63c5-4bdc-bfc2-4dd5ac56315a'),
+           ('802dcb77-df35-47b5-b5df-029d95f5e664', '9d6ccc72-bc93-4b73-af29-c5557d8a0073');
+
+INSERT INTO "public"."exercise"("id", "category", "name", "number_of_reps", "number_of_sets", "repetition_unit", "photo_url", "video_url") 
+    VALUES
+    ('51d10705-6c93-4385-9b1a-9c707c12c5e0', 'Warm_Up', 'Calf wall stretch', 30, 1, 'seconds', NULL, NULL),
+    ('dff785c3-dc4b-4cef-8979-066911aa55c0','Warm_Up', 'Boxer shuffle', 30, 1, 'seconds', NULL, NULL),
+    ('789cf48c-4fb1-4b0b-9cd6-b29d80ed1b68','Strength_Training', 'Walk out shoulder touch push ups', 20, 3, 'count', NULL, NULL),
+    ('e3a1bb2f-6d12-4765-a2fc-418686b5bfd2','Strength_Training', 'Low plank to high plank', 10, 3, 'count', NULL, NULL),
+    ('debf763b-203c-4605-900c-db57becd1db0','Strength_Training', 'One legged lunge pulses', 20, 3, 'count', NULL, NULL),
+    ('0be6f27b-ba31-4897-a925-7cba1329da4d','Strength_Training', 'Lateral Raise', 10, 3, 'count', NULL, NULL),
+    ('c094915b-3acd-4dd8-9603-8db7ee6b86db','Strength_Training', 'Wall Sit', 40, 3, 'seconds', NULL, NULL),
+    ('49c7ac39-e34b-4185-8086-f871bc17ac49','Strength_Training', 'Face Pulls', 15, 3, 'count', NULL, NULL),
+    ('7c54339e-1f6e-4bf5-8bf5-61d7064d80c8','HIIT', 'Box Jump left to right', 45, 3, 'seconds', NULL, NULL),
+    ('76ba57fc-9a4e-4136-aa0f-e9456415fcf7','Strength_Training', 'Exercise Band Shuffle', 30, 3, 'count', NULL, NULL),
+    ('2a512684-0fb5-4525-8359-3823b010617e','Strength_Training', 'Hammer Curls', 10, 3, 'count', NULL, NULL);
+    
+INSERT INTO "public"."workout"("id", "name", "split") 
+    VALUES('24acdc57-6a55-4d92-b070-d1f49c0666e5', 'Workout 12/21', 'Full_Body');
+    
+INSERT INTO "public"."exercise_workout"("workout_id", "exercise_id")
+    VALUES ('24acdc57-6a55-4d92-b070-d1f49c0666e5', '51d10705-6c93-4385-9b1a-9c707c12c5e0'),
+           ('24acdc57-6a55-4d92-b070-d1f49c0666e5', 'dff785c3-dc4b-4cef-8979-066911aa55c0'),
+           ('24acdc57-6a55-4d92-b070-d1f49c0666e5', '789cf48c-4fb1-4b0b-9cd6-b29d80ed1b68'),
+           ('24acdc57-6a55-4d92-b070-d1f49c0666e5', 'e3a1bb2f-6d12-4765-a2fc-418686b5bfd2'),
+           ('24acdc57-6a55-4d92-b070-d1f49c0666e5', 'debf763b-203c-4605-900c-db57becd1db0'),
+           ('24acdc57-6a55-4d92-b070-d1f49c0666e5', '0be6f27b-ba31-4897-a925-7cba1329da4d'),
+           ('24acdc57-6a55-4d92-b070-d1f49c0666e5', 'c094915b-3acd-4dd8-9603-8db7ee6b86db'),
+           ('24acdc57-6a55-4d92-b070-d1f49c0666e5', '49c7ac39-e34b-4185-8086-f871bc17ac49'),
+           ('24acdc57-6a55-4d92-b070-d1f49c0666e5', '7c54339e-1f6e-4bf5-8bf5-61d7064d80c8'),
+           ('24acdc57-6a55-4d92-b070-d1f49c0666e5', '76ba57fc-9a4e-4136-aa0f-e9456415fcf7'),
+           ('24acdc57-6a55-4d92-b070-d1f49c0666e5', '2a512684-0fb5-4525-8359-3823b010617e'),
+           ('24acdc57-6a55-4d92-b070-d1f49c0666e5', 'fa4a3461-63c5-4bdc-bfc2-4dd5ac56315a'),
+           ('24acdc57-6a55-4d92-b070-d1f49c0666e5', '9d6ccc72-bc93-4b73-af29-c5557d8a0073');
