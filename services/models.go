@@ -58,13 +58,6 @@ func (e *WorkoutSplit) Scan(src interface{}) error {
 	return nil
 }
 
-type Equipment struct {
-	ID        uuid.UUID      `json:"id"`
-	CreatedAt sql.NullTime   `json:"created_at"`
-	UpdatedAt sql.NullTime   `json:"updated_at"`
-	Name      sql.NullString `json:"name"`
-}
-
 type Exercise struct {
 	ID             uuid.UUID        `json:"id"`
 	CreatedAt      sql.NullTime     `json:"created_at"`
@@ -78,35 +71,12 @@ type Exercise struct {
 	VideoUrl       sql.NullString   `json:"video_url"`
 }
 
-type ExerciseEquipment struct {
-	ID          uuid.UUID    `json:"id"`
-	CreatedAt   sql.NullTime `json:"created_at"`
-	UpdatedAt   sql.NullTime `json:"updated_at"`
-	ExerciseID  uuid.UUID    `json:"exercise_id"`
-	EquipmentID uuid.UUID    `json:"equipment_id"`
-}
-
-type ExerciseMuscle struct {
-	ID         uuid.UUID    `json:"id"`
-	CreatedAt  sql.NullTime `json:"created_at"`
-	UpdatedAt  sql.NullTime `json:"updated_at"`
-	ExerciseID uuid.UUID    `json:"exercise_id"`
-	MuscleID   uuid.UUID    `json:"muscle_id"`
-}
-
 type ExerciseWorkout struct {
 	ID         uuid.UUID    `json:"id"`
 	CreatedAt  sql.NullTime `json:"created_at"`
 	UpdatedAt  sql.NullTime `json:"updated_at"`
 	ExerciseID uuid.UUID    `json:"exercise_id"`
 	WorkoutID  uuid.UUID    `json:"workout_id"`
-}
-
-type Muscle struct {
-	ID        uuid.UUID    `json:"id"`
-	CreatedAt sql.NullTime `json:"created_at"`
-	UpdatedAt sql.NullTime `json:"updated_at"`
-	Name      string       `json:"name"`
 }
 
 type Workout struct {
