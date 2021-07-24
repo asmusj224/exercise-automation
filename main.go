@@ -34,6 +34,11 @@ func main() {
 	app.GET("/api/v1/exercise-workout/:id", exerciseWorkout.GetExerciseWorkoutByID)
 	app.PUT("/api/v1/exercise-workout/:id", exerciseWorkout.UpdateExerciseWorkoutByID)
 
+	emailService := services.NewEmailService()
+	app.GET("/api/v1/email", func(c *gin.Context) {
+		emailService.SendEmail("jeffrey.asmus88@gmail.com", "Subject", "body")
+	})
+
 	defer database.DB.Close()
 
 	app.Run(":3000")
