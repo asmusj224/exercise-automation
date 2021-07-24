@@ -4,6 +4,7 @@ import (
 	"github.com/asmusj224/exercise-automation/controller"
 	"github.com/asmusj224/exercise-automation/database"
 	"github.com/asmusj224/exercise-automation/services"
+	"github.com/asmusj224/exercise-automation/workers"
 	"github.com/gin-gonic/gin"
 )
 
@@ -34,10 +35,7 @@ func main() {
 	app.GET("/api/v1/exercise-workout/:id", exerciseWorkout.GetExerciseWorkoutByID)
 	app.PUT("/api/v1/exercise-workout/:id", exerciseWorkout.UpdateExerciseWorkoutByID)
 
-	emailService := services.NewEmailService()
-	app.GET("/api/v1/email", func(c *gin.Context) {
-		emailService.SendEmail("jeffrey.asmus88@gmail.com", "Subject", "body")
-	})
+	workers.NewWorkers().Start()
 
 	defer database.DB.Close()
 
