@@ -133,3 +133,44 @@ INSERT INTO "public"."exercise_workout"("workout_id", "exercise_id")
            ('24acdc57-6a55-4d92-b070-d1f49c0666e5', '2a512684-0fb5-4525-8359-3823b010617e'),
            ('24acdc57-6a55-4d92-b070-d1f49c0666e5', 'fa4a3461-63c5-4bdc-bfc2-4dd5ac56315a'),
            ('24acdc57-6a55-4d92-b070-d1f49c0666e5', '9d6ccc72-bc93-4b73-af29-c5557d8a0073');
+
+
+INSERT INTO "public"."exercise"("id", "category", "name", "number_of_reps", "number_of_sets", "repetition_unit", "photo_url", "video_url") 
+    VALUES
+    ('f2bf5855-d018-4eea-a4b8-e40339881579','Strength_Training', 'TRX Chest Press', 20, 3, 'count', NULL, NULL),
+    ('33e204d8-e97c-4711-9c96-45bfe19f0805','Strength_Training', 'TRX Single Leg Squat', 15, 3, 'count', NULL, NULL),
+    ('5c8a90d9-822d-4327-af2d-84ebdc17d1d1','HIIT', 'TRX Mountain Climbers', 60, 3, 'seconds', NULL, NULL),
+    ('fe99e6e2-4505-458e-8e85-03ea5c2c743f','HIIT', 'Burpees', 15, 3, 'count', NULL, NULL),
+    ('17312495-3038-4beb-94a6-68088578780a','Strength_Training', 'TRX Squat Jump', 20, 3, 'count', NULL, NULL),
+    ('e6a13f22-538b-4837-b06c-8654763a704f','Strength_Training', 'TRX Atomic Push Ups', 15, 3, 'count', NULL, NULL),
+    ('614223cc-66ba-4e71-b5ab-51193fbf4689','HIIT', 'Jump Rope', 90, 3, 'seconds', NULL, NULL),
+    ('369bf70b-e0c1-4ae4-93cd-9800c32e1807','Strength_Training', 'TRX Overhead Triceps Extension', 15, 3, 'count', NULL, NULL),
+    ('7f39e836-5b80-45be-94a4-dbf40c78a60f','Strength_Training', 'TRX Single Leg Lunge', 15, 3, 'count', NULL, NULL),
+    ('5afc2436-6590-4fa2-9b0f-2e4dd5f6d4b6','Strength_Training', 'TRX Abdominal Pike', 15, 3, 'count', NULL, NULL),
+    ('24b13f3a-f14f-4d8b-b432-0cf2f6b93f02','HIIT', 'Ski Jumps', 90, 3, 'seconds', NULL, NULL),
+    ('d45a825e-0dcf-4c1d-b00b-8c9afb45b74f','Strength_Training', 'TRX Bicep Curl', 15, 3, 'count', NULL, NULL),
+    ('3a08bae4-d8c8-4e41-a5a8-0adb0585d8fa','Strength_Training', 'TRX Hamstring Curl', 15, 3, 'count', NULL, NULL),
+    ('500d863d-17ec-4c3b-be77-c6d930f6472f','Strength_Training', 'TRX Side Plank', 45, 3, 'seconds', NULL, NULL),
+    ('7982a4a5-dbba-466e-a8c6-e65066bb8798','Strength_Training', 'Jumping Lunges', 60, 3, 'seconds', NULL, NULL);
+
+INSERT INTO "public"."workout"("id", "name", "split") 
+    VALUES('b13faecb-1a79-40d1-873a-5bc3f0bf7265', 'Workout 03/10', 'Full_Body');
+    
+INSERT INTO "public"."exercise_workout"("workout_id", "exercise_id")
+    VALUES ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', '51d10705-6c93-4385-9b1a-9c707c12c5e0'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', 'dff785c3-dc4b-4cef-8979-066911aa55c0'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', 'f2bf5855-d018-4eea-a4b8-e40339881579'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', '33e204d8-e97c-4711-9c96-45bfe19f0805'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', '5c8a90d9-822d-4327-af2d-84ebdc17d1d1'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', 'fe99e6e2-4505-458e-8e85-03ea5c2c743f'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', '17312495-3038-4beb-94a6-68088578780a'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', 'e6a13f22-538b-4837-b06c-8654763a704f'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', '614223cc-66ba-4e71-b5ab-51193fbf4689'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', '369bf70b-e0c1-4ae4-93cd-9800c32e1807'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', '7f39e836-5b80-45be-94a4-dbf40c78a60f'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', '5afc2436-6590-4fa2-9b0f-2e4dd5f6d4b6'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', '24b13f3a-f14f-4d8b-b432-0cf2f6b93f02'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', 'd45a825e-0dcf-4c1d-b00b-8c9afb45b74f'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', '3a08bae4-d8c8-4e41-a5a8-0adb0585d8fa'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', '500d863d-17ec-4c3b-be77-c6d930f6472f'),
+           ('b13faecb-1a79-40d1-873a-5bc3f0bf7265', '7982a4a5-dbba-466e-a8c6-e65066bb8798');
