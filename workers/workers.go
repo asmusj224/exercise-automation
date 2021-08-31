@@ -3,7 +3,7 @@ package workers
 import (
 	"context"
 	"encoding/json"
-	"fmt"
+	"log"
 
 	"github.com/asmusj224/exercise-automation/database"
 	"github.com/asmusj224/exercise-automation/services"
@@ -26,7 +26,7 @@ func (*workers) Start() {
 	emailService := services.NewEmailService()
 	// 0 0 6 ? * MON-FRI
 	c.AddFunc("@every 1m", func() {
-		fmt.Println("IN CRON JOB")
+		log.Println("_______________________________IN CRON JOB_______________________________")
 		ctx := context.Background()
 		workout, _ := store.GetRandomExerciseWorkout(ctx)
 		var exercises []services.Exercise
