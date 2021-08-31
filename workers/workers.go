@@ -24,6 +24,7 @@ func (*workers) Start() {
 	store := services.NewStore(database.DB)
 	c := cron.New(cron.WithSeconds())
 	emailService := services.NewEmailService()
+	log.Println("IN WORKER START")
 	// 0 0 6 ? * MON-FRI
 	c.AddFunc("@every 1m", func() {
 		log.Println("_______________________________IN CRON JOB_______________________________")

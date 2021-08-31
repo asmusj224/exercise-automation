@@ -1,7 +1,6 @@
 package services
 
 import (
-	"log"
 	"net/smtp"
 
 	"github.com/asmusj224/exercise-automation/config"
@@ -20,7 +19,6 @@ func NewEmailService() EmailService {
 func (*emailService) SendEmail(toEmailAddress, subject, body string) (string, error) {
 	from := config.Config("EMAIL_ADDRESS")
 	password := config.Config("EMAIL_PASSWORD")
-	log.Println("FROMM____________"+from, "PASSWORD___________", password)
 	to := []string{toEmailAddress}
 	host := "smtp.gmail.com"
 	port := "587"
