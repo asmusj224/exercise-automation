@@ -24,8 +24,7 @@ func (*workers) Start() {
 	store := services.NewStore(database.DB)
 	c := cron.New(cron.WithSeconds())
 	emailService := services.NewEmailService()
-	// 0 0 6 ? * MON-FRI
-	c.AddFunc("@every 1m", func() {
+	c.AddFunc("0 0 6 ? * MON-FRI", func() {
 		ctx := context.Background()
 		workout, _ := store.GetRandomExerciseWorkout(ctx)
 		var exercises []services.Exercise
