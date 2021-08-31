@@ -37,7 +37,7 @@ func (*workers) Start() {
 		}
 		_, err := emailService.SendEmail("jeffrey.asmus88@gmail.com", subject, email_body)
 		if err != nil {
-			log.Panic(err.Error())
+			log.Println(err.Error())
 		}
 	})
 	c.Start()
