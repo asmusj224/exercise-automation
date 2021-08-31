@@ -1,6 +1,9 @@
 package main
 
 import (
+	"log"
+
+	"github.com/asmusj224/exercise-automation/config"
 	"github.com/asmusj224/exercise-automation/controller"
 	"github.com/asmusj224/exercise-automation/database"
 	"github.com/asmusj224/exercise-automation/services"
@@ -9,6 +12,13 @@ import (
 )
 
 func main() {
+
+	port := config.Config("PORT")
+
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
+
 	app := gin.Default()
 
 	err := database.Connect()
@@ -36,8 +46,7 @@ func main() {
 	app.PUT("/api/v1/exercise-workout/:id", exerciseWorkout.UpdateExerciseWorkoutByID)
 
 	workers.NewWorkers().Start()
-
 	defer database.DB.Close()
 
-	app.Run(":3000")
+	app.Run(":" + port)
 }
