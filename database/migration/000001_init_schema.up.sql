@@ -21,55 +21,17 @@ CREATE TYPE "workout_split" AS ENUM (
   'Other'
 );
 
-CREATE TABLE "muscle" (
-  "id" uuid DEFAULT uuid_generate_v1mc() PRIMARY KEY,
-  "created_at" timestamp DEFAULT (now()),
-  "updated_at" timestamp DEFAULT (now()),
-  "name" text UNIQUE NOT NULL
-);
-
-CREATE TABLE "equipment" (
-  "id" uuid DEFAULT uuid_generate_v1mc() PRIMARY KEY,
-  "created_at" timestamp DEFAULT (now()),
-  "updated_at" timestamp DEFAULT (now()),
-  "name" text
-);
-
 CREATE TABLE "exercise" (
   "id" uuid DEFAULT uuid_generate_v1mc() PRIMARY KEY,
   "created_at" timestamp DEFAULT (now()),
   "updated_at" timestamp DEFAULT (now()),
   "category" exercise_category,
   "name" text UNIQUE NOT NULL,
-  "number_of_reps" int,
-  "number_of_sets" int, 
+  "number_of_reps" int NOT NULL,
+  "number_of_sets" int NOT NULL, 
   "repetition_unit" text,
   "photo_url" text,
   "video_url" text
-);
-
-CREATE TABLE "exercise_equipment"(
-  "id" uuid DEFAULT uuid_generate_v1mc() PRIMARY KEY,
-  "created_at" timestamp DEFAULT (now()),
-  "updated_at" timestamp DEFAULT (now()),
-  "exercise_id" UUID NOT NULL REFERENCES exercise(id) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE CASCADE,
-  "equipment_id" UUID NOT NULL REFERENCES equipment(id) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE CASCADE
-);
-
-CREATE TABLE "exercise_muscle"(
-  "id" uuid DEFAULT uuid_generate_v1mc() PRIMARY KEY,
-  "created_at" timestamp DEFAULT (now()),
-  "updated_at" timestamp DEFAULT (now()),
-  "exercise_id" UUID NOT NULL REFERENCES exercise(id) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE CASCADE,
-  "muscle_id" UUID NOT NULL REFERENCES muscle(id) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE CASCADE
 );
 
 
@@ -93,11 +55,7 @@ CREATE TABLE "exercise_workout"(
     ON DELETE CASCADE
 );
 
-CREATE UNIQUE INDEX ON "equipment" ("id");
-
 CREATE UNIQUE INDEX ON "exercise" ("id");
-
-CREATE UNIQUE INDEX ON "muscle" ("id");
 
 CREATE UNIQUE INDEX ON "workout" ("id");
 
