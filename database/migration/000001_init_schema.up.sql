@@ -27,8 +27,8 @@ CREATE TABLE "exercise" (
   "updated_at" timestamp DEFAULT (now()),
   "category" exercise_category,
   "name" text UNIQUE NOT NULL,
-  "number_of_reps" int,
-  "number_of_sets" int, 
+  "number_of_reps" int NOT NULL,
+  "number_of_sets" int NOT NULL, 
   "repetition_unit" text,
   "photo_url" text,
   "video_url" text
