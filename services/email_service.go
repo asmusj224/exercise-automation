@@ -24,7 +24,12 @@ func (*emailService) SendEmail(toEmailAddress, subject, body string) (string, er
 	port := "587"
 	address := host + ":" + port
 
-	message := []byte(subject + body)
+	msg := "From: " + from + "\n" +
+		"To: " + toEmailAddress + "\n" +
+		"Subject: " + subject + "\n\n" +
+		body
+
+	message := []byte(msg)
 
 	auth := smtp.PlainAuth("", from, password, host)
 
