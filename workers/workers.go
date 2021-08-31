@@ -24,10 +24,8 @@ func (*workers) Start() {
 	store := services.NewStore(database.DB)
 	c := cron.New(cron.WithSeconds())
 	emailService := services.NewEmailService()
-	log.Println("IN WORKER START")
 	// 0 0 6 ? * MON-FRI
 	c.AddFunc("@every 1m", func() {
-		log.Println("_______________________________IN CRON JOB_______________________________")
 		ctx := context.Background()
 		workout, _ := store.GetRandomExerciseWorkout(ctx)
 		var exercises []services.Exercise
@@ -37,7 +35,10 @@ func (*workers) Start() {
 		for _, exercise := range exercises {
 			email_body += exercise.Name + "\n"
 		}
-		emailService.SendEmail("jeffrey.asmus88@gmail.com", subject, email_body)
+		_, err := emailService.SendEmail("jeffrey.asmus88@gmail.com", subject, email_body)
+		if err != nil {
+			log.Panic(err.Error())
+		}
 	})
 	c.Start()
 }
