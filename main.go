@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"net/http"
 
 	"github.com/asmusj224/exercise-automation/config"
 	"github.com/asmusj224/exercise-automation/controller"
@@ -26,6 +27,10 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	app.GET("/api/v1/healthcheck", func(ctx *gin.Context) {
+		ctx.JSON(http.StatusOK, gin.H{"status": "good"})
+	})
 
 	store := services.NewStore(database.DB)
 	workoutController := controller.NewWorkoutController(store)
