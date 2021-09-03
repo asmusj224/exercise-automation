@@ -27,8 +27,8 @@ INSERT INTO exercise (
 type CreateExerciseParams struct {
 	Category       ExerciseCategory `json:"category"`
 	Name           string           `json:"name"`
-	NumberOfReps   sql.NullInt32    `json:"number_of_reps"`
-	NumberOfSets   sql.NullInt32    `json:"number_of_sets"`
+	NumberOfReps   int32            `json:"number_of_reps"`
+	NumberOfSets   int32            `json:"number_of_sets"`
 	RepetitionUnit sql.NullString   `json:"repetition_unit"`
 	PhotoUrl       sql.NullString   `json:"photo_url"`
 	VideoUrl       sql.NullString   `json:"video_url"`
@@ -135,8 +135,8 @@ UPDATE exercise SET
 type UpdateExerciseByIdParams struct {
 	Name           string           `json:"name"`
 	Category       ExerciseCategory `json:"category"`
-	NumberOfReps   sql.NullInt32    `json:"number_of_reps"`
-	NumberOfSets   sql.NullInt32    `json:"number_of_sets"`
+	NumberOfReps   int32            `json:"number_of_reps"`
+	NumberOfSets   int32            `json:"number_of_sets"`
 	PhotoUrl       sql.NullString   `json:"photo_url"`
 	VideoUrl       sql.NullString   `json:"video_url"`
 	RepetitionUnit sql.NullString   `json:"repetition_unit"`

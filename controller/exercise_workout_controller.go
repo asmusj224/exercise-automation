@@ -1,7 +1,10 @@
 package controller
 
 import (
+	"encoding/json"
+	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/asmusj224/exercise-automation/services"
 	"github.com/gin-gonic/gin"
@@ -16,6 +19,7 @@ type ExerciseWorkoutController interface {
 	CreateExerciseWorkout(ctx *gin.Context)
 	GetExerciseWorkoutByID(ctx *gin.Context)
 	UpdateExerciseWorkoutByID(ctx *gin.Context)
+	EmailRandomExerciseWorkout(ctx *gin.Context)
 }
 
 func NewExerciseWorkoutController(store services.Store) ExerciseWorkoutController {
@@ -123,4 +127,22 @@ func (c *exerciseWorkoutController) UpdateExerciseWorkoutByID(ctx *gin.Context) 
 	}
 
 	ctx.JSON(http.StatusOK, exerciseWorkout)
+}
+
+func (c *exerciseWorkoutController) EmailRandomExerciseWorkout(ctx *gin.Context) {
+
+	emailService := services.NewEmailService()
+	workout, _ := c.store.GetRandomExerciseWorkout(ctx)
+	var exercises []services.Exercise
+	json.Unmarshal(workout.Exercises, &exercises)
+	subject := "Exercise Plan"
+	email_body := ""
+	for _, exercise := range exercises {
+		email_body += exercise.Name + " number of reps: " + strconv.Itoa(int(exercise.NumberOfReps)) + " number of sets: " + strconv.Itoa(int(exercise.NumberOfSets)) + "\n"
+	}
+	_, err := emailService.SendEmail("jeffrey.asmus88@gmail.com", subject, email_body)
+	if err != nil {
+		log.Println(err.Error())
+	}
+	ctx.JSON(http.StatusOK, workout)
 }

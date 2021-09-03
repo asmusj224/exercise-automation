@@ -64,8 +64,8 @@ type Exercise struct {
 	UpdatedAt      sql.NullTime     `json:"updated_at"`
 	Category       ExerciseCategory `json:"category"`
 	Name           string           `json:"name"`
-	NumberOfReps   sql.NullInt32    `json:"number_of_reps"`
-	NumberOfSets   sql.NullInt32    `json:"number_of_sets"`
+	NumberOfReps   int32            `json:"number_of_reps"`
+	NumberOfSets   int32            `json:"number_of_sets"`
 	RepetitionUnit sql.NullString   `json:"repetition_unit"`
 	PhotoUrl       sql.NullString   `json:"photo_url"`
 	VideoUrl       sql.NullString   `json:"video_url"`

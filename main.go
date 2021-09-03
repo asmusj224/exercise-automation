@@ -8,7 +8,6 @@ import (
 	"github.com/asmusj224/exercise-automation/controller"
 	"github.com/asmusj224/exercise-automation/database"
 	"github.com/asmusj224/exercise-automation/services"
-	"github.com/asmusj224/exercise-automation/workers"
 	"github.com/gin-gonic/gin"
 )
 
@@ -49,8 +48,8 @@ func main() {
 	app.POST("/api/v1/exercise-workout", exerciseWorkout.CreateExerciseWorkout)
 	app.GET("/api/v1/exercise-workout/:id", exerciseWorkout.GetExerciseWorkoutByID)
 	app.PUT("/api/v1/exercise-workout/:id", exerciseWorkout.UpdateExerciseWorkoutByID)
+	app.GET("/api/v1/email/exercise-workout", exerciseWorkout.EmailRandomExerciseWorkout)
 
-	workers.NewWorkers().Start()
 	defer database.DB.Close()
 
 	app.Run(":" + port)

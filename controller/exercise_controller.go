@@ -44,16 +44,10 @@ func (c *exerciseController) CreateExercise(ctx *gin.Context) {
 	}
 
 	arg := services.CreateExerciseParams{
-		Name:     req.Name,
-		Category: services.ExerciseCategory(req.Category),
-		NumberOfReps: sql.NullInt32{
-			Int32: req.NumberOfReps,
-			Valid: true,
-		},
-		NumberOfSets: sql.NullInt32{
-			Int32: req.NumberOfSets,
-			Valid: true,
-		},
+		Name:           req.Name,
+		Category:       services.ExerciseCategory(req.Category),
+		NumberOfReps:   req.NumberOfReps,
+		NumberOfSets:   req.NumberOfSets,
 		RepetitionUnit: sql.NullString{String: req.RepetitionUnit, Valid: true},
 		PhotoUrl:       sql.NullString{String: req.PhotoURL, Valid: true},
 		VideoUrl:       sql.NullString{String: req.VideoURL, Valid: true},
@@ -123,17 +117,11 @@ func (c *exerciseController) UpdateExerciseByID(ctx *gin.Context) {
 	}
 
 	arg := services.UpdateExerciseByIdParams{
-		ID:       id,
-		Name:     req.Name,
-		Category: services.ExerciseCategory(req.Category),
-		NumberOfReps: sql.NullInt32{
-			Int32: req.NumberOfReps,
-			Valid: true,
-		},
-		NumberOfSets: sql.NullInt32{
-			Int32: req.NumberOfSets,
-			Valid: true,
-		},
+		ID:             id,
+		Name:           req.Name,
+		Category:       services.ExerciseCategory(req.Category),
+		NumberOfReps:   req.NumberOfReps,
+		NumberOfSets:   req.NumberOfSets,
 		RepetitionUnit: sql.NullString{String: req.RepetitionUnit, Valid: true},
 		PhotoUrl:       sql.NullString{String: req.PhotoURL, Valid: true},
 		VideoUrl:       sql.NullString{String: req.VideoURL, Valid: true},
